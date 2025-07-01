@@ -1,0 +1,39 @@
+#hero {
+    position: relative;
+    color: var(--light-color); /* Ubah warna teks menjadi putih */
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 70px;
+    
+    /* Gambar Latar dari Unsplash */
+    background-image: url('https://source.unsplash.com/1600x900/?printing,press,office');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Tambahkan overlay gelap di atas gambar */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay hitam 50% transparan */
+    z-index: -1;
+}
+
+.hero-content h1 {
+    color: var(--light-color); /* Pastikan judul juga putih */
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    color: #e0e0e0; /* Warna sub-judul sedikit lebih redup */
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+}
+/* Akhir dari perubahan CSS */

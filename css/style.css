@@ -1,0 +1,629 @@
+/* === ROOT VARIABLES & GLOBAL RESET  === */
+:root {
+    --primary-color: #005A9C;
+    --secondary-color: #F8F9FA;
+    --dark-color: #1d1d1d;
+    --gray-color: #555;
+    --light-color: #FFFFFF;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); line-height: 1.6; background-color: var(--light-color); color: var(--dark-color); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; }
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.4rem; }
+p { margin-bottom: 1rem; color: var(--gray-color); }
+a { text-decoration: none; color: var(--primary-color); }
+section { padding: 5rem 0; }
+.section-title { text-align: center; margin-bottom: 3rem; }
+.section-title h2 { margin-bottom: 0.5rem; }
+.text-center { text-align: center; }
+.mt-4 { margin-top: 4rem; }
+
+/* === BUTTONS === */
+.btn { display: inline-block; padding: 0.8rem 1.8rem; border-radius: 5px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; }
+.btn-primary { background-color: var(--primary-color); color: var(--light-color); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0, 90, 156, 0.3); }
+.btn-secondary { background-color: var(--light-color); color: var(--primary-color); border: 2px solid var(--primary-color); }
+.btn-secondary:hover { background-color: var(--primary-color); color: var(--light-color); }
+
+/* === HEADER (Style untuk link aktif) === */
+header { background-color: var(--light-color); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--dark-color); }
+.nav-links a { color: var(--dark-color); margin: 0 1rem; font-weight: 500; transition: color 0.3s ease; border-bottom: 2px solid transparent; padding-bottom: 5px; }
+.nav-links a:hover { color: var(--primary-color); }
+/* BARU: Style untuk link halaman aktif */
+.nav-links a.active { color: var(--primary-color); font-weight: 600; border-bottom: 2px solid var(--primary-color); }
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+
+/* === HERO SECTION === */
+/* === HERO SECTION (DESAIN BARU 2025) === */
+#hero {
+    /* Mengganti background gambar dengan gradient modern */
+    background: linear-gradient(120deg, #f5f7fa 0%, #e8eff7 100%);
+    color: var(--dark-color); /* Warna teks kembali ke gelap agar kontras */
+    min-height: 100vh; /* Mengisi seluruh viewport awal */
+    display: flex;
+    align-items: center;
+    margin-top: 0; /* Hapus margin atas karena header sudah fixed */
+    padding-top: 70px; /* Beri ruang untuk header */
+    overflow: hidden; /* Mencegah elemen visual keluar dari section */
+}
+
+/* Menghilangkan overlay gelap yang tidak diperlukan lagi */
+#hero::before {
+    display: none;
+}
+
+/* Kontainer utama hero dengan layout grid 2 kolom */
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolom sama besar */
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+}
+
+/* Kolom Teks di Kiri */
+.hero-text {
+    text-align: left; /* Teks menjadi rata kiri */
+}
+
+.hero-text h1 {
+    font-size: 3.5rem; /* Perbesar font judul untuk dampak visual */
+    color: var(--dark-color);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+    font-size: 1.1rem; /* Sedikit perbesar teks paragraf */
+    color: var(--gray-color);
+    max-width: 500px; /* Batasi lebar agar mudah dibaca */
+    margin-bottom: 2.5rem;
+}
+
+/* Grup untuk tombol aksi */
+.hero-buttons {
+    display: flex;
+    gap: 1rem; /* Jarak antar tombol */
+}
+
+/* Membuat tombol sekunder lebih subtil */
+.hero-buttons .btn-secondary {
+    background-color: transparent;
+}
+
+
+/* Kolom Visual di Kanan (Product Showcase) */
+.hero-image-showcase {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    perspective: 1000px; /* Menambah perspektif untuk efek 3D */
+}
+
+.showcase-card {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.showcase-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Mengatur posisi dan rotasi masing-masing kartu untuk efek tumpukan */
+.showcase-card.card-1 {
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.showcase-card.card-2 {
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-35%, -60%) rotate(5deg);
+}
+
+.showcase-card.card-3 {
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-65%, -40%) rotate(12deg);
+}
+
+/* Menambahkan animasi interaktif saat kursor mouse mendekat */
+.hero-image-showcase:hover .card-1 {
+    transform: translate(-50%, -55%) rotate(-8deg) scale(1.05);
+}
+.hero-image-showcase:hover .card-2 {
+    transform: translate(-30%, -60%) rotate(5deg) scale(1.05);
+}
+.hero-image-showcase:hover .card-3 {
+    transform: translate(-70%, -40%) rotate(12deg) scale(1.05);
+}
+
+/* Penyesuaian untuk Tampilan Tablet (Responsive) */
+@media (max-width: 992px) {
+    .hero-container {
+        grid-template-columns: 1fr; /* Ubah layout menjadi 1 kolom */
+        text-align: center;
+    }
+    .hero-text {
+        text-align: center;
+        order: 2; /* Pindahkan blok teks ke bawah gambar */
+    }
+    .hero-image-showcase {
+        order: 1; /* Pindahkan blok gambar ke atas teks */
+        margin-bottom: 3rem;
+        height: 350px; /* Perkecil tinggi showcase di tablet */
+    }
+    .hero-buttons {
+        justify-content: center; /* Posisikan tombol ke tengah */
+    }
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Penyesuaian untuk Tampilan Mobile (Responsive) */
+@media (max-width: 576px) {
+    #hero {
+        min-height: auto;
+        padding-bottom: 4rem;
+    }
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    .showcase-card {
+        width: 180px;
+        height: 250px;
+    }
+    .hero-image-showcase {
+        height: 280px;
+    }
+}
+
+/* === IKON MODERN MINIMALIS === */
+.icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+.icon-wrapper i {
+    width: 32px;
+    height: 32px;
+}
+.icon-wrapper-alur {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 90, 156, 0.3);
+}
+.icon-wrapper-alur i {
+    width: 36px;
+    height: 36px;
+}
+
+/* === KEUNGGULAN & ALUR (Update dengan ikon baru) === */
+#keunggulan { background-color: #fff; }
+.keunggulan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.keunggulan-item { text-align: center; }
+.keunggulan-item h3 { margin-bottom: 0.5rem; }
+
+#alur { background-color: var(--secondary-color); }
+.alur-grid { display: flex; justify-content: space-between; text-align: center; gap: 2rem; }
+.alur-step { flex: 1; }
+.alur-step h3 { margin-bottom: 0.5rem; }
+
+/* === PRODUK UNGGULAN & PRODUK LENGKAP === */
+#produk-unggulan { background-color: var(--secondary-color); }
+.produk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.product-card { background-color: var(--light-color); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
+.card-content { padding: 1.5rem; }
+.card-content h3 { margin-bottom: 0.5rem; }
+.card-content p { font-size: 0.9rem; min-height: 50px; }
+.card-link { font-weight: 600; font-size: 0.9rem; }
+
+/* === HALAMAN PRODUK (Style Baru) === */
+.page-header {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 4rem 0;
+    margin-top: 70px; /* Space for fixed header */
+    text-align: center;
+}
+.page-header h1 {
+    color: var(--light-color);
+}
+.page-header p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+#produk-lengkap {
+    padding-top: 4rem;
+}
+
+/* === FOOTER (Tetap Sama) === */
+footer { background-color: var(--dark-color); color: var(--light-color); padding-top: 4rem; }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-bottom: 3rem; }
+.footer-col h3 { margin-bottom: 1rem; color: var(--light-color); }
+.footer-col p { color: #ccc; }
+.footer-col ul { list-style: none; }
+.footer-col ul li a { color: #ccc; transition: color 0.3s ease; }
+.footer-col ul li a:hover { color: var(--light-color); }
+.footer-bottom { text-align: center; padding: 1rem 0; border-top: 1px solid #444; }
+.footer-bottom p { color: #ccc; margin: 0; }
+
+/* === RESPONSIVE (Sedikit penyesuaian) === */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .nav-container { position: relative; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--light-color); box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 1rem 0; }
+    .nav-links.active { display: flex; }
+    .nav-links a { margin: 0; padding: 0.8rem 2rem; border: none; }
+    .nav-links a.active { background-color: var(--secondary-color); }
+    .nav-container .btn-primary { display: none; }
+    .menu-toggle { display: block; }
+    .alur-grid { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+}
+
+/* === HALAMAN TENTANG KAMI (STYLE BARU 2025) === */
+
+/* Hero Section */
+.about-hero {
+    background-color: var(--secondary-color);
+    padding: 4rem 0;
+    margin-top: 70px; /* Space for fixed header */
+}
+
+.about-hero-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.about-hero-text {
+    flex: 1;
+}
+
+.about-hero-text h1 {
+    font-size: 3rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+
+.about-hero-image {
+    flex: 1;
+    max-width: 450px;
+}
+
+.about-hero-image img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Bento Grid Section */
+#story {
+    background-color: #fff;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.bento-item {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.bento-item.item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-item i {
+    color: var(--primary-color);
+    width: 32px;
+    height: 32px;
+    margin-bottom: 1rem;
+}
+
+.bento-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.bento-item.stat-item {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.bento-item.stat-item .stat-number {
+    font-size: 3rem;
+    color: var(--light-color);
+}
+
+.bento-item.stat-item p {
+    color: #eee;
+    margin: 0;
+}
+
+
+/* Team Section */
+#team {
+    background-color: var(--secondary-color);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    text-align: center;
+}
+
+.team-card img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover img {
+    transform: scale(1.05);
+}
+
+.team-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.team-card p {
+    color: var(--gray-color);
+}
+
+
+/* Penyesuaian Responsive untuk Halaman Tentang */
+@media (max-width: 992px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero-container {
+        flex-direction: column;
+    }
+    .about-hero-text h1 {
+        font-size: 2.5rem;
+    }
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-item.item-large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
+
+/* === HALAMAN KONTAK (STYLE BARU) === */
+
+.contact-section {
+    padding: 4rem 0;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+/* Kolom Info Kiri */
+.contact-info h3 {
+    margin-bottom: 1rem;
+}
+.contact-info p {
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item i {
+    flex-shrink: 0;
+    margin-top: 5px;
+    color: var(--primary-color);
+}
+
+.info-item h4 {
+    margin-bottom: 0.2rem;
+}
+.info-item p, .info-item a {
+    margin: 0;
+    color: var(--gray-color);
+    line-height: 1.5;
+}
+.info-item a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Kolom Form Kanan */
+.contact-form-wrapper {
+    background-color: var(--secondary-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+}
+
+.contact-form-wrapper h3 {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.btn.full-width {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Peta */
+.map-section {
+    padding: 0;
+    background-color: #eee;
+}
+.map-section iframe {
+    width: 100%;
+    height: 450px;
+    display: block;
+    border: none;
+}
+
+/* Responsive untuk Halaman Kontak */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+/* === STYLE HARGA PRODUK (BARU) === */
+.product-price {
+    font-size: 1.25rem; /* Sedikit lebih besar dari teks deskripsi */
+    font-weight: 700; /* Tebal */
+    color: var(--primary-color); /* Menggunakan warna utama brand */
+    margin-top: auto; /* Mendorong harga ke bawah sebelum link */
+    margin-bottom: 1.5rem;
+}
+
+/* Penyesuaian pada card-content agar layout harga lebih baik */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Memastikan konten mengisi sisa ruang */
+    padding: 1.5rem;
+}
+
+.card-content p {
+    flex-grow: 1; /* Mendorong harga dan link ke bawah jika deskripsi pendek */
+}
+
+/* === Tombol CTA di Kartu Produk (BARU) === */
+.product-card .btn {
+    width: 100%;       /* Membuat tombol memenuhi lebar kartu */
+    text-align: center;
+    margin-top: 1rem;  /* Memberi sedikit jarak dari harga */
+    padding: 0.8rem 1rem; /* Menyesuaikan padding agar pas */
+}
+/* === SEARCH BAR PRODUK (BARU) === */
+/* === SEARCH BAR PRODUK (KODE PERBAIKAN) === */
+.search-section {
+    margin-top: 3rem;
+    padding: 0 0 3rem 0;
+    background-color: #fff;
+}
+
+/* Menggunakan Flexbox untuk alignment yang sempurna */
+.search-container {
+    display: flex; /* 1. Mengaktifkan Flexbox */
+    align-items: center; /* 2. Membuat semua item di dalamnya sejajar vertikal */
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ddd; /* 3. Pindahkan border dari input ke container */
+    border-radius: 50px; /* 4. Pindahkan border-radius ke container */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding-left: 1rem; /* Beri sedikit jarak untuk ikon */
+}
+
+/* Tambahkan efek focus pada container saat input di dalamnya aktif */
+.search-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 90, 156, 0.2);
+}
+
+/* Ikon tidak lagi perlu position: absolute */
+.search-container i {
+    color: var(--gray-color);
+}
+
+/* Input sekarang tidak memiliki border sendiri */
+#searchInput {
+    width: 100%;
+    padding: 1rem; /* Atur ulang padding */
+    font-size: 1rem;
+    font-family: var(--font-body);
+    border: none; /* 5. Hapus border dari input */
+    outline: none; /* Hapus outline saat di-klik */
+    background-color: transparent; /* Buat background transparan */
+}
